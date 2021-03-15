@@ -20,4 +20,4 @@ vaccineRoute(app);
 
 app.listen(port);
 
-console.log('menezes-service API Server started on: ', port);
+console.log('covid19-menezes API Server started on: ', port);
