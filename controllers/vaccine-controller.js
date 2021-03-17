@@ -4,7 +4,8 @@ exports.get_all_posts = function(req, res){
     res.setHeader('Access-Control-Allow-Origin','*');
     let sql = "select u.userId, u.userName, c.cityId, name as cityName, content, dateCreated from Posts p" + 
             " inner join Users u on p.userId = u.userId" + 
-            " inner join Cities c on c.cityId = u.cityId" ;
+            " inner join Cities c on c.cityId = u.cityId" +
+            " order by dateCreated desc";
     con.query(sql, function (err, result) {
         if (err) throw err;
         res.send(result);
@@ -23,7 +24,7 @@ exports.get_all_cities = function(req, res){
 exports.get_posts_by_city = function(req, res){
     res.setHeader('Access-Control-Allow-Origin','*');
     let sql = "select u.userId, u.userName, c.cityId, name as cityName, content, dateCreated from Posts p inner join Users u on u.userId = p.userId " + 
-            "inner join Cities c on u.cityId = c.cityId where c.cityId = " + req.params.cityId  ;
+            "inner join Cities c on u.cityId = c.cityId where c.cityId = " + req.params.cityId + " order by dateCreated desc" ;
     con.query(sql, function (err, result) {
         if (err) throw err;
         res.send(result);
